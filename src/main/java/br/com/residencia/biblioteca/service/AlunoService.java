@@ -28,7 +28,7 @@ public class AlunoService {
 	@Autowired
 	EmprestimoService emprestimoService;
 
-	// -------------DTO
+	//DTO
 
 	public AlunoDTO toDTO(Aluno aluno) {
 		AlunoDTO alunoDTO = new AlunoDTO();
@@ -124,7 +124,7 @@ public class AlunoService {
 		return alunoAtualizadaDTO;
 	}
 
-	// ----------------------------------
+	// 
 
 	public AlunoResumoDTO getAlunoByIdDTO(Integer id) {
 
@@ -167,7 +167,7 @@ public class AlunoService {
 		return listaAlunoResumoDTO;
 	}
 
-	// -----------------------
+	// 
 
 	public List<Aluno> getAllAlunos() {
 		return alunoRepository.findAll();

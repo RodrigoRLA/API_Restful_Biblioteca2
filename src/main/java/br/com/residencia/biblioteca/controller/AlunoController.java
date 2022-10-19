@@ -29,13 +29,13 @@ public class AlunoController {
 	AlunoService alunoService;
 	
 	
-	//----------------DTO	
-	/*
+	//DTO	
+	
 	@GetMapping("/dto")
-	public ResponseEntity<List<AlunoDTO>> getAllAlunoDTO(){ 
+	public ResponseEntity<List<AlunoDTO>> getAllAlunosDTO(){ 
 		return new ResponseEntity<>(alunoService.getAllAlunoDTO(),HttpStatus.OK);
 	}
-	*/
+	
 	@PostMapping("/dto")
 	public ResponseEntity<AlunoDTO> saveAlunoDTO (@RequestBody AlunoDTO livroDTO) {
 		return new ResponseEntity<>(alunoService.saveAlunoDTO(livroDTO),HttpStatus.OK);
@@ -63,10 +63,9 @@ public class AlunoController {
 	public ResponseEntity<List<AlunoResumoDTO>> getAllAlunoDTO() {
 		return new ResponseEntity<>(alunoService.getAllAlunoResumoDTO(),HttpStatus.OK);
 		
-		
 	}
 	
-	//------------------------
+	//
 	
 	@GetMapping
 	public ResponseEntity<List<Aluno>> getAllAlunos(){ 
