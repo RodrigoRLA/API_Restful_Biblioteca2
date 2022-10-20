@@ -83,6 +83,9 @@ public class AlunoService {
 		}
 		return aluno;
 	}
+	public Aluno getAlunoDTOById(Integer idAluno) {
+		return alunoRepository.findById(idAluno).orElse(null);
+	}
 
 	public List<AlunoDTO> getAllAlunoDTO2() {
 		return alunoRepository.findAll().stream()
@@ -157,7 +160,7 @@ public class AlunoService {
 		List<AlunoResumoDTO> listaAlunoResumoDTO = new ArrayList<>();
 
 		for (Aluno aluno : listaAluno) {
-			// Conversão para DTO
+		//conversão
 			AlunoResumoDTO alunoResumoDTO = getAlunoByIdDTO(aluno.getNumeroMatriculaAluno());
 
 			listaAlunoResumoDTO.add(alunoResumoDTO);

@@ -19,7 +19,7 @@ public class EmprestimoService {
 	EmprestimoRepository emprestimoRepository;
 
 	
-	//-------------DTO
+	//DTO
 	
 	
 	public EmprestimoDTO toDTO(Emprestimo emprestimo) {

@@ -45,7 +45,20 @@ public class AlunoController {
 	public ResponseEntity<AlunoDTO> updateLivroDTO (@RequestBody AlunoDTO alunoDTO, @PathVariable Integer id) {
 		return new ResponseEntity<>(alunoService.updateAlunoDTO(alunoDTO,id),HttpStatus.OK);
 	}
+	@GetMapping("/alunoDTO/{id}")
+	public ResponseEntity<Aluno> getAlunoDTOById(@PathVariable Integer id) {
+		Aluno aluno = alunoService.getAlunoById(id);
+		
+		if (aluno != null) {
+			return new ResponseEntity<>(aluno,HttpStatus.OK);			
+		}
+		else {
+			return new ResponseEntity<>(aluno,HttpStatus.NOT_FOUND);
+		}
+		
+	}
 	
+	//
 	@GetMapping("/resumo/{id}")
 	public ResponseEntity<AlunoResumoDTO> getAlunoByIdDTO(@PathVariable Integer id) {
 		AlunoResumoDTO aluno = alunoService.getAlunoByIdDTO(id);
@@ -59,6 +72,7 @@ public class AlunoController {
 		
 		
 	}
+	//
 	@GetMapping("/dto/all")
 	public ResponseEntity<List<AlunoResumoDTO>> getAllAlunoDTO() {
 		return new ResponseEntity<>(alunoService.getAllAlunoResumoDTO(),HttpStatus.OK);
