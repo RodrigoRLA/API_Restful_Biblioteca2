@@ -28,7 +28,7 @@ public class AlunoService {
 	@Autowired
 	EmprestimoService emprestimoService;
 
-	//DTO
+	// DTO
 
 	public AlunoDTO toDTO(Aluno aluno) {
 		AlunoDTO alunoDTO = new AlunoDTO();
@@ -83,6 +83,7 @@ public class AlunoService {
 		}
 		return aluno;
 	}
+
 	public Aluno getAlunoDTOById(Integer idAluno) {
 		return alunoRepository.findById(idAluno).orElse(null);
 	}
@@ -127,7 +128,38 @@ public class AlunoService {
 		return alunoAtualizadaDTO;
 	}
 
-	// 
+	public List<Aluno> getAllAlunos() {
+		return alunoRepository.findAll();
+	}
+
+	public Aluno getAlunoById(Integer idAluno) {
+		return alunoRepository.findById(idAluno).orElse(null);
+	}
+
+	public Aluno saveAluno(Aluno aluno) {
+		return alunoRepository.save(aluno);
+	}
+
+	public Aluno updateAluno(Aluno aluno, Integer id) {
+		Aluno alunoExistenteNoBanco = alunoRepository.findById(id).get();
+
+		alunoExistenteNoBanco.setBairro(aluno.getBairro());
+		alunoExistenteNoBanco.setCidade(aluno.getCidade());
+		alunoExistenteNoBanco.setComplemento(aluno.getComplemento());
+		alunoExistenteNoBanco.setCpf(aluno.getCpf());
+		alunoExistenteNoBanco.setDataNascimento(aluno.getDataNascimento());
+		alunoExistenteNoBanco.setLogradouro(aluno.getLogradouro());
+		alunoExistenteNoBanco.setNome(aluno.getNome());
+		alunoExistenteNoBanco.setNumeroLogradouro(aluno.getNumeroLogradouro());
+
+		return alunoRepository.save(alunoExistenteNoBanco);
+	}
+
+	public Aluno deleteAluno(Integer id) {
+		alunoRepository.deleteById(id);
+		return getAlunoById(id);
+	}
+	// Exercicio 2
 
 	public AlunoResumoDTO getAlunoByIdDTO(Integer id) {
 
@@ -160,7 +192,7 @@ public class AlunoService {
 		List<AlunoResumoDTO> listaAlunoResumoDTO = new ArrayList<>();
 
 		for (Aluno aluno : listaAluno) {
-		//conversão
+
 			AlunoResumoDTO alunoResumoDTO = getAlunoByIdDTO(aluno.getNumeroMatriculaAluno());
 
 			listaAlunoResumoDTO.add(alunoResumoDTO);
@@ -170,37 +202,6 @@ public class AlunoService {
 		return listaAlunoResumoDTO;
 	}
 
-	// 
+	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 
-	public List<Aluno> getAllAlunos() {
-		return alunoRepository.findAll();
-	}
-
-	public Aluno getAlunoById(Integer idAluno) {
-		return alunoRepository.findById(idAluno).orElse(null);
-	}
-
-	public Aluno saveAluno(Aluno aluno) {
-		return alunoRepository.save(aluno);
-	}
-
-	public Aluno updateAluno(Aluno aluno, Integer id) {
-		Aluno alunoExistenteNoBanco = alunoRepository.findById(id).get();
-
-		alunoExistenteNoBanco.setBairro(aluno.getBairro());
-		alunoExistenteNoBanco.setCidade(aluno.getCidade());
-		alunoExistenteNoBanco.setComplemento(aluno.getComplemento());
-		alunoExistenteNoBanco.setCpf(aluno.getCpf());
-		alunoExistenteNoBanco.setDataNascimento(aluno.getDataNascimento());
-		alunoExistenteNoBanco.setLogradouro(aluno.getLogradouro());
-		alunoExistenteNoBanco.setNome(aluno.getNome());
-		alunoExistenteNoBanco.setNumeroLogradouro(aluno.getNumeroLogradouro());
-
-		return alunoRepository.save(alunoExistenteNoBanco);
-	}
-
-	public Aluno deleteAluno(Integer id) {
-		alunoRepository.deleteById(id);
-		return getAlunoById(id);
-	}
 }
